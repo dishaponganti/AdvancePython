@@ -1,0 +1,35 @@
+def printExchange(func):
+    """
+    Decorator for exchangerate function to add corresponding currency symbol
+    :param func: exchangerate function
+    :return: exchange rate value with the currency symbol
+    """
+    def wrapper(*args, **kwargs):
+        val = func(args[0], args[1])
+        if args[1] == 'US':
+            return '$' + str(val)
+        elif args[1] == 'EU':
+            return '€' + str(val)
+        elif args[1] == 'CN':
+            return '¥' + str(val)
+    return wrapper
+
+
+@printExchange
+def exchangerate(rs_val, country):
+    """
+    Function to return the equivalent exchange rate value for the given Indian rupee value
+    :param rs_val: Indian Rupee value
+    :param country: Country whose exchange rate is to be known
+    :return: The exchange rate value for the provided INR
+    """
+    if country == 'US':
+        return rs_val * 75
+    elif country == 'EU':
+        return rs_val * 82
+    elif country == 'CN':
+        return rs_val * 11
+
+
+if __name__ == "__main__":
+    print(exchangerate(10, 'CN'))
