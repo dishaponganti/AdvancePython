@@ -1,0 +1,28 @@
+def fibo(limit):
+    a = 0
+    b = 1
+
+    while True:
+        try:
+            if a <= limit:
+                a, b = b, a + b
+                yield a
+            else:
+                raise StopIteration
+        except StopIteration:
+            break
+
+if __name__ == '__main__':
+    
+    f = fibo(10)
+    print(f)
+    for i in f:
+        print("From Generator Function:",i)
+    
+    #Generator Expression for n square
+    genexp = (a**2 for a in range(10))
+    print(genexp)
+    for i in genexp:
+        print("From Generator Expression",i)
+    
+    
