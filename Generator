@@ -1,0 +1,16 @@
+def fibo(limit):
+    a = 0
+    b = 1
+
+    while True:
+        try:
+            if a <= limit:
+                a, b = b, a + b
+                yield a
+            else:
+                raise StopIteration
+        except StopIteration:
+            break
+
+for i in iter(fibo(10)):
+    print(i)
