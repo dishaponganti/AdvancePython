@@ -1,3 +1,4 @@
+#Generator function to return fibonacci numbers till the limit is reached
 def fibo(limit):
     a = 0
     b = 1
@@ -12,6 +13,24 @@ def fibo(limit):
         except StopIteration:
             break
 
+
+#Nested Generators to print every quarter of the years list
+def quartersyears(yearlist):
+    years = iter(yearlist)
+    while True:
+        try:
+            y = next(years)
+            quarters = iter(['q1', 'q2', 'q3', 'q4'])
+            while True:
+                try:
+                    q = next(quarters)
+                    yield str(y)+' '+q
+                except StopIteration:
+                    break
+        except StopIteration:
+            break
+
+
 if __name__ == '__main__':
     
     f = fibo(10)
@@ -25,4 +44,6 @@ if __name__ == '__main__':
     for i in genexp:
         print("From Generator Expression",i)
     
-    
+    f1 = quartersyears([2017,2018,2019])
+    for i in f1:
+        print("From Nested Generators:",i)
